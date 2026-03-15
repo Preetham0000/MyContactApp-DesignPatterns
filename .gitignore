@@ -5,3 +5,4 @@
 /bin/*
 /.settings/
 src/module-info.java
+/bin/
