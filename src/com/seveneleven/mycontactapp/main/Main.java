@@ -1,10 +1,7 @@
-/*
- * UC-05: View Contact Details
- * Allow logged-in users to view complete information of a specific contact
- * @author Developer
- * @version 5.0
- */
-
+// UC-05: View Contact Details
+// Allow logged-in users to view complete information of a specific contact
+// @author Developer
+// @version 5.0
 
 package com.seveneleven.mycontactapp.main;
 import java.util.Scanner;
@@ -74,12 +71,12 @@ public class Main {
                 System.out.println("3. Update Preference");
                 System.out.println("4. Create Contact");
                 System.out.println("5. View Contact");
-                System.out.println("6. Exit");
+                System.out.println("6. Edit Contact");
+                System.out.println("7. Exit");
                 System.out.print("Choose option: ");
                 int option = Integer.parseInt(sc.nextLine());
                 ProfileManager manager = new ProfileManager();
                 Command command;
-
                 switch (option) {
                     case 1 -> {
                         System.out.print("Enter new name: ");
@@ -129,8 +126,18 @@ public class Main {
                         System.out.println(display.display());
                     }
                     case 6 -> {
-                        System.out.println("Exiting");
-                        running = false;
+                        if (contact == null) {
+                            System.out.println("No contact available.");
+                            break;
+                        }
+                        System.out.print("Enter new contact name: ");
+                        String newName = sc.nextLine();
+                        EditContactCommand edit = new EditContactCommand(contact, newName);
+                        edit.execute();
+                    }
+                    case 7 -> {
+                    	 System.out.println("Exiting");
+                         running = false;
                     }
 
                     default -> System.out.println("Invalid option.");
